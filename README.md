@@ -1,12 +1,14 @@
-phoneUtils
+libphonenumber
 ==========
 
-A simple wrapper of Google Phone Number library
+A simple wrapper of
+(Google Phone Number library)[https://github.com/google/libphonenumber]
 
-This is a fork of the repository [https://github.com/nathanhammond/libphonenumber]
+This is a fork of the deprecated repository
+[https://github.com/nathanhammond/libphonenumber]
 
-Exports
--------
+Overview
+------
 
 This library adds the global `phoneUtils` with the following methods:
 
@@ -27,7 +29,19 @@ phoneUtils.formatInOriginalFormat(phoneNumber, regionCode);
 phoneUtils.formatOutOfCountryCallingNumber(phoneNumber, regionCode, target);
 ```
 
-Compile
+Use the library
 -------
 
-Run `./configure`
+Copy `dist/phoneUtils.js` to your work space
+
+Version
+-------
+
+Version number is consistent with the (release versions of
+Google Phone Number library)[https://github.com/google/libphonenumber/releases]
+
+Compile with the latest Google Phone Library code
+-------
+
+Run `./compile.sh`
+
