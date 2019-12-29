@@ -30,5 +30,7 @@ for dependency in $dependencies; do
     fi
 done
 
-cd ../closure-compiler; mvn -DskipTests -pl externs/pom.xml,pom-main.xml,pom-main-shaded.xml; cd -
+cd ../closure-compiler; mvn -DskipTests -pl externs/pom.xml,pom-main.xml,pom-main-shaded.xml -X; cd -
+
+ant -f build.xml compile
 
