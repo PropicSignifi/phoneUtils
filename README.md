@@ -2,7 +2,7 @@ libphonenumber
 ==========
 
 A simple wrapper of
-(Google Phone Number library)[https://github.com/google/libphonenumber]
+[Google Phone Number library](https://github.com/google/libphonenumber)
 
 This is a fork of the deprecated repository
 [https://github.com/nathanhammond/libphonenumber]
@@ -37,8 +37,8 @@ Copy `dist/phoneUtils.js` to your work space
 Version
 -------
 
-Version number is consistent with the (release versions of
-Google Phone Number library)[https://github.com/google/libphonenumber/releases]
+Version number is consistent with the [release versions of
+Google Phone Number library](https://github.com/google/libphonenumber/releases)
 
 Compile with the latest Google Phone Library code
 -------
