@@ -1,4 +1,4 @@
-libphonenumber
+phoneUtils
 ==========
 
 A simple wrapper of

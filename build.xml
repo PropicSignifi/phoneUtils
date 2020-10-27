@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 
 <project name="libphonenumber-javascript" default="compile">
-  <property name="libphonenumber.dir"
-            value="${basedir}/../libphonenumber" />
+  <property name="phonenumberlib.dir"
+  value="${basedir}/../libphonenumber/javascript" />
   <property name="closure-compiler.dir"
             value="${basedir}/../closure-compiler" />
   <property name="closure-compiler.jar"
-            value="${closure-compiler.dir}/target/closure-compiler-1.0-SNAPSHOT.jar" />
+            value="${closure-compiler.dir}/bazel-bin/compiler_unshaded_deploy.jar" />
   <property name="closure-library.dir"
             value="${basedir}/../closure-library" />
   <property name="closure-linter.dir"
@@ -23,10 +23,10 @@
     <element name="extraflags" optional="yes" />
     <sequential>
       <exec executable="python" failonerror="true" logError="true">
-        <arg value="${closure-library.dir}/closure/bin/calcdeps.py" />
+        <arg value="${closure-library.dir}/closure/bin/build/closurebuilder.py" />
         <arg line='-i "@{inputfile}"' />
         <arg line='--output_file "@{outputfile}"' />
-        <arg line='-p "${closure-library.dir}"' />
+        <arg line='--root "${closure-library.dir}"' />
         <arg line="-o @{outputmode}" />
         <arg line='-c "${closure-compiler.jar}"' />
         <arg line='-f "--output_wrapper=@{outputwrapper}"' />
@@ -92,26 +92,27 @@
   <target name="setnulldevice" depends="nul,devnull" />
 
   <target name="clean" description="deletes all generated files">
-    <delete dir="dist"/>
-    <mkdir dir="dist"/>
+    <delete file="i18n/phonenumbers/demo-compiled.js" />
   </target>
 
-  <target name="compile" description="generates phoneUtils.js">
+  <target name="compile"
+          description="generates phoneUtils.js">
     <closure-compile inputfile="phoneUtils.js"
                      outputfile="dist/phoneUtils.js">
       <extraflags>
-        <arg line='-p "${libphonenumber.dir}/javascript/i18n/phonenumbers"' />
-        <arg line='-e "${libphonenumber.dir}/javascript/i18n/phonenumbers/metadatafortesting.js"' />
-        <arg line='-e "${libphonenumber.dir}/javascript/i18n/phonenumbers/metadatalite.js"' />
-        <arg line='-e "${libphonenumber.dir}/javascript/i18n/phonenumbers/regioncodefortesting.js"' />
+        <arg line='--root "${phonenumberlib.dir}/i18n/phonenumbers"' />
+        <arg line='-e "${phonenumberlib.dir}/i18n/phonenumbers/metadatalite.js"' />
+        <arg line='-e "${phonenumberlib.dir}/i18n/phonenumbers/metadatafortesting.js"' />
+        <arg line='-e "i18n/phonenumbers/regioncodefortesting.js"' />
       </extraflags>
     </closure-compile>
   </target>
 
   <target name="lint" description="lints all javascript files">
-    <gjslint inputfile="${libphonenumber.dir}/javascript/i18n/phonenumbers/asyoutypeformatter*.js" />
-    <gjslint inputfile="${libphonenumber.dir}/javascript/i18n/phonenumbers/demo.js" />
-    <gjslint inputfile="${libphonenumber.dir}/javascript/i18n/phonenumbers/phonenumberutil*.js" />
+    <gjslint inputfile="i18n/phonenumbers/asyoutypeformatter*.js" />
+    <gjslint inputfile="i18n/phonenumbers/demo.js" />
+    <gjslint inputfile="i18n/phonenumbers/phonenumberutil*.js" />
+    <gjslint inputfile="i18n/phonenumbers/shortnumberinfo*.js" />
   </target>
 
 </project>
